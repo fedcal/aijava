@@ -187,3 +187,123 @@ Age,WeeklyOrders,AvgSpend,Responded
 7.5,80,150,0
 9.0,68,230,1
 ```
+
+## Random Forest Classifier
+Il Random Forest Classifier è uno degli algoritmi di machine learning più potenti e versatili, utilizzato principalmente 
+per compiti di classificazione e regressione. Si tratta di un ensemble method, che combina più modelli di base per ottenere 
+previsioni più robuste e accurate.
+
+Un Random Forest è un insieme (o ensemble) di alberi decisionali. Un albero decisionale è un modello che prende decisioni 
+basate su una serie di condizioni sui dati di input (ad esempio, "Età > 40?", "Reddito > 50000?"). Tuttavia, un singolo 
+albero decisionale potrebbe essere troppo suscettibile agli errori nei dati e agli overfitting (cioè imparare troppo bene 
+i dettagli del training set, ma senza generalizzare bene su nuovi dati).
+
+Per ovviare a questo problema, un Random Forest costruisce molteplici alberi decisionali, ciascuno costruito con un subset 
+diverso dei dati originali, e le previsioni finali vengono aggregate dalla combinazione delle previsioni di tutti gli alberi. 
+In particolare:
+
+- Per problemi di classificazione, la classe predetta sarà quella che riceve il maggior numero di "voti" dagli alberi.
+- Per problemi di regressione, la previsione finale è la media delle previsioni di tutti gli alberi.
+
+Il Random Forest funziona seguendo questi passaggi principali:
+
+1. **Bootstrap Aggregating (Bagging)**: Per costruire ciascun albero della foresta, il Random Forest utilizza un metodo chiamato bagging. 
+   In pratica, per ogni albero decisionale, viene preso un campione casuale di dati (con ripetizione) dal dataset originale. 
+   Questo significa che alcuni esempi del dataset potrebbero non essere inclusi in un particolare albero, mentre altri potrebbero 
+   essere ripetuti. L'idea dietro il bagging è che se ogni albero "vede" solo una parte del dataset, gli errori di ogni singolo 
+   albero non si propagano attraverso tutta la foresta.
+2. **Selezione Casuale delle Caratteristiche (Features)**: Per ogni nodo di un albero decisionale, Random Forest non considera 
+   tutte le caratteristiche (o variabili) disponibili, ma seleziona un sottoinsieme casuale di esse. Questo rende ogni albero 
+   diverso dagli altri, anche se i dati sono gli stessi. Questo processo riduce ulteriormente la correlazione tra gli alberi 
+   e aiuta a migliorare la diversità della foresta.
+3. **Costruzione degli Alberi**: Ogni albero viene costruito in modo indipendente, utilizzando il dataset bootstrap e 
+   le caratteristiche selezionate casualmente. I nodi dell'albero vengono creati separando i dati in base alla caratteristica 
+   che meglio separa le classi nel nodo. La costruzione dell'albero continua finché non si raggiungono condizioni di arresto 
+   predefinite, come la profondità massima dell'albero o quando il nodo non ha abbastanza dati per essere suddiviso ulteriormente.
+4. **Aggregazione delle Previsioni**: Una volta che tutti gli alberi sono stati costruiti, il Random Forest fa delle previsioni: 
+   - Classificazione: Ogni albero emette una "votazione" su quale classe appartiene un dato esempio, e la classe che ottiene 
+     il maggior numero di voti dalla foresta è la predizione finale.
+   - Regressione: Invece di voti, ogni albero fa una previsione numerica, e la previsione finale è la media delle previsioni 
+     di tutti gli alberi.
+
+### Vantaggi del Random Forest
+
+1. Riduzione dell'Overfitting: Combinando molteplici alberi, Random Forest riduce la possibilità che uno specifico albero 
+   si adatti troppo ai dettagli del dataset (overfitting).
+2. Accuratezza Elevata: Grazie al processo di aggregazione, le previsioni di una Random Forest sono generalmente più 
+   accurate rispetto a quelle di un singolo albero decisionale.
+3. Robustezza: Anche se alcuni alberi nella foresta sono "deboli" o fanno errori, l'aggregazione dei risultati garantisce 
+   che il modello nel suo insieme resti robusto.
+4. Gestione di Dati Mancanti: Random Forest è abbastanza robusto nei confronti dei dati mancanti e può gestirli in modo efficace.
+5. Capacità di Lavorare con Dati di Alta Dimensione: Gestisce bene datasets con molte variabili, selezionando in modo 
+   casuale le caratteristiche da usare per ciascun albero.
+
+### Limitazioni
+
+1. Modello Pesante: Un Random Forest è un modello "pesante", cioè richiede più risorse computazionali rispetto ad altri modelli, 
+   perché deve costruire e mantenere molti alberi. 
+2. Interpretabilità Limitata: Sebbene gli alberi singoli siano facilmente interpretabili, l'aggregazione di molti alberi 
+   rende difficile capire come il modello arriva a una determinata previsione. 
+3. Tempo di Allenamento: L'addestramento di un Random Forest può essere lento se il dataset è molto grande o se la foresta 
+   contiene molti alberi.
+
+## Decision Tree
+
+I Decision Tree (alberi decisionali) sono uno degli algoritmi di machine learning più intuitivi e ampiamente utilizzati. Si basano su una struttura ad albero, dove ogni nodo interno rappresenta una decisione basata su un attributo, ogni ramo rappresenta il risultato di quella decisione, e ogni foglia rappresenta un valore di output (classe o valore numerico). Sono utilizzati sia per problemi di classificazione che di regressione.
+
+### Vantaggi del Decision Tree
+
+1. Facili da interpretare:
+   - La struttura ad albero è intuitiva e può essere facilmente visualizzata, rendendola accessibile anche a chi non ha un background tecnico.
+   - Le decisioni sono trasparenti e possono essere spiegate in modo semplice.
+
+2. Non richiedono preprocessing complesso:
+   - I Decision Tree possono gestire sia dati numerici che categorici senza bisogno di normalizzazione o codifica one-hot.
+
+3. Gestiscono feature non lineari:
+   - Possono catturare relazioni non lineari tra le feature e il target.
+
+4. Robusti ai dati mancanti:
+   - Possono gestire valori mancanti nei dati, sia durante l'addestramento che durante la predizione.
+
+5. Veloci da addestrare:
+   - Per dataset di piccole o medie dimensioni, l'addestramento è generalmente rapido.
+
+### Limitazioni del Decision Tree
+
+1. Soggetti a overfitting:
+   - Senza un'adeguata regolarizzazione (es., potatura), i Decision Tree tendono a creare alberi troppo complessi che si adattano eccessivamente ai dati di training.
+
+2. Instabilità:
+   - Piccoli cambiamenti nei dati possono portare a strutture dell'albero completamente diverse.
+
+3. Bias verso feature con molti valori:
+   - Tendono a favorire feature con un numero elevato di valori (es., feature categoriche con molte categorie).
+
+4. Non sempre ottimali per dataset molto grandi:
+   - Per dataset di grandi dimensioni, altri algoritmi come le Random Forest o il Gradient Boosting possono essere più efficaci.
+
+5. Limitati nelle relazioni complesse:
+   - Possono avere difficoltà a catturare relazioni complesse tra feature, specialmente se non sono gerarchiche.
+
+### Contesto di utilizzo per un'azienda di piccole dimensioni: una pizzeria
+
+Una piccola pizzeria vuole ottimizzare le proprie operazioni e migliorare la soddisfazione dei clienti. Ha dati storici su:
+
+- Ordinazioni (es., tipo di pizza, orario, giorno della settimana).
+- Clienti (es., età, frequenza di visite).
+- Feedback (es., valutazioni, commenti).
+
+Applicazione dei Decision Tree
+1. Previsione della domanda:
+   - Un Decision Tree può essere utilizzato per prevedere il numero di pizze da preparare in base a giorno della settimana, orario e condizioni meteorologiche.
+   - Esempio: Se è venerdì sera e piove, è probabile che ci siano più ordinazioni di pizze a domicilio.
+
+2. Segmentazione dei clienti:
+
+   - Classificare i clienti in base alla loro probabilità di ritorno (es., "fedele" vs "occasionale") in base a età, frequenza di visite e tipologia di ordinazioni.
+
+3. Ottimizzazione del menu:
+   - Identificare quali pizze sono più popolari in base a stagionalità, orario e preferenze dei clienti.
+
+I Decision Tree sono uno strumento versatile e potente, adatto sia per piccole aziende come una pizzeria che per aziende di medie dimensioni come un'azienda tessile. Per la pizzeria, offrono un modo semplice ed economico per ottimizzare le operazioni e migliorare la soddisfazione dei clienti. Per l'azienda tessile, possono aiutare a identificare inefficienze e migliorare la qualità del prodotto. Tuttavia, è importante essere consapevoli dei loro limiti, come il rischio di overfitting, e considerare l'uso di tecniche più avanzate (es., Random Forest) per problemi più complessi.
