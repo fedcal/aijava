@@ -1,0 +1,73 @@
+# PROJECT CONTEXT AND GUIDELINES FOR AI ASSISTANCE
+
+# Questa sezione fornisce contesto generale e linee guida per l'assistenza AI.
+
+# --------------------
+
+# ERROR FIXING PROCESS
+# Questa sezione descrive il processo preferito per l'identificazione e la risoluzione degli errori.
+# L'AI dovrebbe seguire questi passi quando assiste nel debugging.
+step 1: Analyze the error message carefully. Describe the error in simple terms, identifying the component or feature affected.
+step 2: Based on the error, identify potential root causes. Consider recent code changes, dependencies, or environmental factors.
+step 3: Suggest possible solutions or debugging steps. Prioritize the most likely fixes.
+step 4: Assist in implementing the chosen solution or running diagnostic tests.
+step 5: Verify that the error is resolved and does not introduce new issues.
+
+# --------------------
+
+# BUILDING PROCESS
+# Descrive i passi necessari per costruire il progetto. Utile per l'AI per capire come il progetto viene compilato o preparato per l'esecuzione.
+# Specify the commands and any required setup.
+# Example (adjust based on your project's technology):
+# 1. Ensure dependencies are installed: `npm install` or `pip install -r requirements.txt`
+# 2. Build the frontend: `npm run build`
+# 3. Build the backend: (if applicable, e.g., compile code)
+
+# --------------------
+
+# Our .env variables
+# Elenco dei file .env utilizzati nel progetto. L'AI dovrebbe essere consapevole di questi file per comprendere le configurazioni ambientali.
+# Non includere qui i valori sensibili, solo i percorsi dei file.
+backend/.env
+frontend/.env
+# Add any other relevant .env files
+
+# --------------------
+
+# CURRENT FILE STRUCTURE
+# Fornisce una panoramica della struttura del progetto. Aiuta l'AI a navigare e comprendere l'organizzazione dei file.
+# Il comando 'tree' è un esempio per generare questa struttura, escludendo cartelle non rilevanti.
+# Execute this command in your terminal and paste the output below:
+# tree -L 4 -a -I 'node_modules|.git|__pycache__|.DS_Store|pytest_cache|.vscode|.idea|dist|build'
+# (Paste tree output here)
+
+# --------------------
+
+# GITHUB PUSH PROCESS
+# Descrive i passi standard per salvare e inviare le modifiche al repository GitHub. Utile per l'AI per assistere con le operazioni Git.
+# 1. Stage changes: `git add .` or `git add <specific_files>`
+# 2. Commit changes: `git commit -m "Your meaningful commit message"`
+# 3. Push to the remote repository: `git push origin <your_branch_name>`
+# Mention preferred branch naming conventions or pull request process if applicable.
+
+# --------------------
+
+# IMPORTANT
+# Questa sezione evidenzia le istruzioni cruciali o le avvertenze che l'AI dovrebbe sempre considerare.
+# Ripetere qui le direttive più importanti del progetto.
+- Always explain code changes and their reasoning.
+- Before suggesting a solution, consider the potential side effects.
+- Adhere to the project's coding style guidelines (if any).
+- Double-check security implications for any suggested code.
+
+# --------------------
+
+# OTHER CONTEXT
+# Spazio per qualsiasi altra informazione rilevante non coperta sopra.
+# Puoi includere obiettivi del progetto, decisioni di design chiave, link a documentazione esterna, ecc.
+# Example:
+# - The project aims to provide a fast and user-friendly interface for managing tasks.
+# - We are using React for the frontend and FastAPI for the backend.
+# - API documentation can be found at [Link to API Docs]
+
+# --- End of Context File ---
